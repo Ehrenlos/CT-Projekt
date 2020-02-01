@@ -1,7 +1,6 @@
 extends KinematicBody2D
 
 var MAX_SPEED = 400
-var ACCELERATION = 1
 var motion = Vector2.ZERO
 
 func _physics_process(delta):
@@ -10,7 +9,7 @@ func _physics_process(delta):
 	if axis == Vector2.ZERO:
 		motion = Vector2.ZERO
 	else:
-		apply_movement(axis * ACCELERATION * delta)
+		apply_movement(axis * delta)
 	motion = move_and_slide(motion)
 
 func get_input_axis():
