@@ -6,11 +6,10 @@ var motion = Vector2.ZERO
 func _physics_process(delta):
 	motion = Vector2.ZERO
 	var axis = get_input_axis()
-	if axis == Vector2.ZERO:
-		motion = Vector2.ZERO
-	else:
-		apply_movement(axis * delta)
+	apply_movement(axis * delta)
 	motion = move_and_slide(motion)
+	rotation = get_input_axis().angle()
+	#look_at(get_global_mouse_position())
 
 func get_input_axis():
 	var axis = Vector2.ZERO

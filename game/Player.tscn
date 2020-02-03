@@ -13,6 +13,7 @@ script = ExtResource( 2 )
 
 [node name="tolles gesicht" type="Sprite" parent="Sprite"]
 position = Vector2( 0.938607, -0.132485 )
+rotation = 1.58439
 scale = Vector2( 1.31301, 1.31301 )
 texture = ExtResource( 1 )
 
