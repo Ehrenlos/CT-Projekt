@@ -1,21 +1,19 @@
 extends KinematicBody2D
 
+
 var MAX_SPEED = 400
 var motion = Vector2.ZERO
+var controller = load("Controller.gd").new(Controller.Device.C0)
 
 func _physics_process(delta):
 	motion = Vector2.ZERO
-	var axis = get_input_axis()
+	var axis = controller.get_input_axis(0)
 	apply_movement(axis * delta)
+	if controller.get_device() == Controller.Device.KEYBOARD:
+		look_at(get_global_mouse_position())
+	elif axis != Vector2.ZERO:
+		rotation = controller.get_input_axis(1).angle()
 	motion = move_and_slide(motion)
-	rotation = get_input_axis().angle()
-	#look_at(get_global_mouse_position())
-
-func get_input_axis():
-	var axis = Vector2.ZERO
-	axis.x = Input.get_action_strength('ui_right') - Input.get_action_strength('ui_left')
-	axis.y = Input.get_action_strength('ui_down') - Input.get_action_strength('ui_up')
-	return axis.normalized()
 
 func apply_movement(acceleration):
 	motion += acceleration
