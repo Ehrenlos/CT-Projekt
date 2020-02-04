@@ -1,8 +1,8 @@
 extends Node
 class_name Controller
 
-func _init(device=Device.KEYBOARD):
-	set_device(device)
+func _init(init_device=Device.KEYBOARD):
+	set_device(init_device)
 
 var device setget set_device, get_device #0 - 3 = c0 - c3; 4 = kb
 
