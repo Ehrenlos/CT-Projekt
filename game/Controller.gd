@@ -1,6 +1,9 @@
 extends Node
 class_name Controller
 
+enum Device {C0, C1, C2, C3, KEYBOARD}
+enum Analog_Stick {LEFT, RIGHT}
+
 func _init(init_device=Device.KEYBOARD):
 	set_device(init_device)
 
@@ -11,9 +14,6 @@ func set_device(new_device = Device.KEYBOARD):
 
 func get_device():
 	return device
-
-enum Device {C0, C1, C2, C3, KEYBOARD}
-enum Analog_Stick {LEFT, RIGHT}
 
 func get_input_axis(stick):
 	var axis = Vector2.ZERO
