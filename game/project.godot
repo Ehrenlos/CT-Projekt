@@ -13,9 +13,15 @@ _global_script_classes=[ {
 "class": "Controller",
 "language": "GDScript",
 "path": "res://Controller.gd"
+}, {
+"base": "KinematicBody2D",
+"class": "PlayerCharacter",
+"language": "GDScript",
+"path": "res://PlayerCharacter.gd"
 } ]
 _global_script_class_icons={
-"Controller": ""
+"Controller": "",
+"PlayerCharacter": ""
 }
 
 [application]
