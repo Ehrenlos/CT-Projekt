@@ -6,7 +6,7 @@ var motion = Vector2.ZERO
 var controller
 
 func _init(device=Controller.Device.KEYBOARD):
-	controller = load("Controller.gd").new(device)
+	controller = Controller.new(device)
 
 func _physics_process(delta):
 	motion = Vector2.ZERO
