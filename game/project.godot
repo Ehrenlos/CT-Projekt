@@ -24,16 +24,16 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://PlayerCharacter.gd"
 }, {
-"base": "Node",
-"class": "SpawnController",
+"base": "KinematicBody2D",
+"class": "StandardMob",
 "language": "GDScript",
-"path": "res://SpawnController.gd"
+"path": "res://standardmob.gd"
 } ]
 _global_script_class_icons={
 "Controller": "",
 "GameMaster": "",
 "PlayerCharacter": "",
-"SpawnController": ""
+"StandardMob": ""
 }
 
 [application]

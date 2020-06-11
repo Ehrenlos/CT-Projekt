@@ -1,5 +1,10 @@
 extends KinematicBody2D
 class_name GameMaster
+var mana = 0
+const MAX_MANA = 10
+var progress 
+var prog_timer
+var pposition = Vector2()
 
 var SPEED = 400
 var motion = Vector2.ZERO
@@ -12,6 +17,13 @@ func _init(device=Controller.Device.KEYBOARD):
 
 func _ready():
 	add_to_group("GameMaster")
+	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+	progress = get_parent().get_child(1)
+	prog_timer = Timer.new()
+	prog_timer.connect("timeout", self, "on_prog_timer_timeout")
+	prog_timer.set_wait_time(0.01)
+	add_child(prog_timer)
+	prog_timer.start()
 
 func _physics_process(delta):
 	if controller.device == Controller.Device.KEYBOARD:
@@ -31,9 +43,37 @@ func _physics_process(delta):
 	
 	
 	if controller.is_just_pressed(Controller.Button.ATTACK):
-		pass
+		pposition = get_parent().get_child(0).get_position()
+		if pposition.distance_to(position) > 140:
+			if use_mana(3):
+				spawn_mob(0)
 
 func apply_movement(acceleration):
 	motion += acceleration
 	motion = motion.normalized() * SPEED
 
+func inc_mana():
+	if mana <= MAX_MANA:
+		mana += 1
+
+func use_mana(cost):
+	if mana >= cost:
+		mana -= cost
+		return true
+	else:
+		return false
+
+func on_prog_timer_timeout():
+	if progress.value == 100:
+		progress.value = 0
+		inc_mana()
+	progress.value += 1
+	prog_timer.start()
+	
+func spawn_mob(index):
+	var mob
+	match index:
+		0: 
+			mob = preload("res://MobDing.tscn").instance()
+	mob.set_position(position)
+	get_parent().add_child(mob)
