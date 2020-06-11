@@ -7,7 +7,7 @@ var controller
 var attack_ready
 var attack_timer
 
-func _init(device=Controller.Device.KEYBOARD):
+func _init(device=Controller.Device.C0):
 	controller = Controller.new(device)
 
 func _ready():
@@ -40,3 +40,6 @@ func apply_movement(acceleration):
 
 func on_attack_timer_timeout():
 	attack_ready = true
+
+func get_position():
+	return Vector2(position.x, position.y)
