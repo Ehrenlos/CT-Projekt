@@ -25,6 +25,11 @@ _global_script_classes=[ {
 "path": "res://PlayerCharacter.gd"
 }, {
 "base": "KinematicBody2D",
+"class": "RandomMob",
+"language": "GDScript",
+"path": "res://RandomMob.gd"
+}, {
+"base": "KinematicBody2D",
 "class": "StandardMob",
 "language": "GDScript",
 "path": "res://standardmob.gd"
@@ -33,6 +38,7 @@ _global_script_class_icons={
 "Controller": "",
 "GameMaster": "",
 "PlayerCharacter": "",
+"RandomMob": "",
 "StandardMob": ""
 }
 
