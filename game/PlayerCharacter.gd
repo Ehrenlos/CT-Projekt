@@ -6,6 +6,7 @@ var motion = Vector2.ZERO
 var controller
 var attack_ready
 var attack_timer
+var lives = 3
 
 func _init(device=Controller.Device.C0):
 	controller = Controller.new(device)
@@ -30,6 +31,7 @@ func _physics_process(delta):
 	
 	if controller.is_just_pressed(Controller.Button.ATTACK) && attack_ready:
 		var sword = preload("res://Sword.tscn").instance()
+		sword.add_to_group("Weapon")
 		add_child(sword)
 		attack_ready = false
 		attack_timer.start()
@@ -43,3 +45,13 @@ func on_attack_timer_timeout():
 
 func get_position():
 	return Vector2(position.x, position.y)
+
+func on_hit(collider):
+	collider.on_hit(self)
+	lives -= 1
+	print("Lives:", lives)
+	if lives <= 0:
+		on_death()
+
+func on_death():
+	get_tree().change_scene("Game Over.tscn")
