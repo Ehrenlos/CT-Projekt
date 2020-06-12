@@ -42,10 +42,6 @@ config/name="game"
 run/main_scene="res://World.tscn"
 config/icon="res://icon.png"
 
-[display]
-
-window/size/resizable=false
-
 [input]
 
 ui_left={

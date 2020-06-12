@@ -55,3 +55,4 @@ func on_hit(collider):
 
 func on_death():
 	get_tree().change_scene("Game Over.tscn")
+

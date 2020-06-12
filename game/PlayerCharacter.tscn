@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://PlayerCharacter.gd" type="Script" id=1]
 [ext_resource path="res://tolles gesicht.png" type="Texture" id=2]
+[ext_resource path="res://Hearts.gd" type="Script" id=3]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 34.4257
@@ -18,5 +19,7 @@ scale = Vector2( 1.31301, 1.31301 )
 texture = ExtResource( 2 )
 
 [node name="Collider" type="CollisionShape2D" parent="."]
-position = Vector2( 0.214645, -0.214638 )
 shape = SubResource( 1 )
+
+[node name="Hearts" type="Sprite" parent="."]
+script = ExtResource( 3 )

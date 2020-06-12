@@ -53,21 +53,19 @@ func apply_movement(acceleration):
 	motion = motion.normalized() * SPEED
 
 func inc_mana():
-	if mana <= MAX_MANA:
+	if mana < MAX_MANA*100:
 		mana += 1
 
 func use_mana(cost):
-	if mana >= cost:
-		mana -= cost
+	if mana >= cost*100:
+		mana -= cost*100
 		return true
 	else:
 		return false
 
 func on_prog_timer_timeout():
-	if progress.value == 100:
-		progress.value = 0
-		inc_mana()
-	progress.value += 1
+	inc_mana()
+	progress.value = mana
 	prog_timer.start()
 	
 func spawn_mob(index):

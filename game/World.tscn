@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://PlayerCharacter.tscn" type="PackedScene" id=1]
 [ext_resource path="res://GameMaster.tscn" type="PackedScene" id=2]
 [ext_resource path="res://GameMaster.gd" type="Script" id=3]
 [ext_resource path="res://ManaProgress.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Progframe.png" type="Texture" id=5]
+[ext_resource path="res://Progbar.png" type="Texture" id=6]
 
 [node name="World" type="Node"]
 
@@ -11,6 +13,16 @@
 position = Vector2( 527, 305 )
 
 [node name="Progress" parent="." instance=ExtResource( 4 )]
+margin_left = 928.0
+margin_right = 1248.0
+margin_bottom = 640.0
+rect_scale = Vector2( 0.3061, 0.3061 )
+max_value = 1000.0
+texture_under = null
+texture_over = ExtResource( 5 )
+texture_progress = ExtResource( 6 )
+fill_mode = 3
+tint_over = Color( 0, 0, 0, 1 )
 
 [node name="border" type="StaticBody2D" parent="."]
 
