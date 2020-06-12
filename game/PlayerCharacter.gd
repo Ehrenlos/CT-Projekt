@@ -7,9 +7,12 @@ var controller
 var attack_ready
 var attack_timer
 var lives = 3
+const WINDOW_HEIGHT = 600
+const WINDOW_WIDTH = 1066
 
-func _init(device=Controller.Device.C0):
+func _init(device = Controller.Device.C0):
 	controller = Controller.new(device)
+	
 
 func _ready():
 	add_to_group("Player")
@@ -28,6 +31,15 @@ func _physics_process(delta):
 	elif controller.get_input_axis(1) != Vector2.ZERO:
 		rotation = controller.get_input_axis(1).angle()
 	motion = move_and_slide(motion)
+	
+	if position.x < 32:
+		set_position(Vector2(32, position.y))
+	if position.x > WINDOW_WIDTH - 32:
+		set_position(Vector2(WINDOW_WIDTH - 32, position.y))
+	if position.y < 32:
+		set_position(Vector2(position.x, 32))
+	if position.y > WINDOW_HEIGHT - 32:
+		set_position(Vector2(position.x, WINDOW_HEIGHT - 32))
 	
 	if controller.is_just_pressed(Controller.Button.ATTACK) && attack_ready:
 		var sword = preload("res://Sword.tscn").instance()
@@ -49,7 +61,6 @@ func get_position():
 func on_hit(collider):
 	collider.on_hit(self)
 	lives -= 1
-	print("Lives:", lives)
 	if lives <= 0:
 		on_death()
 

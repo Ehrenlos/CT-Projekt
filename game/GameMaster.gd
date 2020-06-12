@@ -6,18 +6,18 @@ var progress
 var prog_timer
 var pposition = Vector2()
 
-var SPEED = 400
+const SPEED = 800
 var motion = Vector2.ZERO
 var controller
-var WINDOW_HEIGHT = 600
-var WINDOW_WIDTH = 1024
 
-func _init(device=Controller.Device.KEYBOARD):
+const WINDOW_HEIGHT = 600
+const WINDOW_WIDTH = 1066
+
+func _init(device = Controller.Device.KEYBOARD):
 	controller = Controller.new(device)
 
 func _ready():
 	add_to_group("GameMaster")
-	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	progress = get_parent().get_child(1)
 	prog_timer = Timer.new()
 	prog_timer.connect("timeout", self, "on_prog_timer_timeout")
@@ -25,7 +25,7 @@ func _ready():
 	add_child(prog_timer)
 	prog_timer.start()
 
-func _physics_process(delta):
+func _process(delta):
 	if controller.device == Controller.Device.KEYBOARD:
 		set_position(get_global_mouse_position())
 	else:

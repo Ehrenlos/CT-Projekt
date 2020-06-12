@@ -22,4 +22,5 @@ texture = ExtResource( 2 )
 shape = SubResource( 1 )
 
 [node name="Hearts" type="Sprite" parent="."]
+z_index = 1
 script = ExtResource( 3 )
