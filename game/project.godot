@@ -15,13 +15,25 @@ _global_script_classes=[ {
 "path": "res://Controller.gd"
 }, {
 "base": "KinematicBody2D",
+"class": "GameMaster",
+"language": "GDScript",
+"path": "res://GameMaster.gd"
+}, {
+"base": "KinematicBody2D",
 "class": "PlayerCharacter",
 "language": "GDScript",
 "path": "res://PlayerCharacter.gd"
+}, {
+"base": "KinematicBody2D",
+"class": "StandardMob",
+"language": "GDScript",
+"path": "res://standardmob.gd"
 } ]
 _global_script_class_icons={
 "Controller": "",
-"PlayerCharacter": ""
+"GameMaster": "",
+"PlayerCharacter": "",
+"StandardMob": ""
 }
 
 [application]
@@ -29,6 +41,10 @@ _global_script_class_icons={
 config/name="game"
 run/main_scene="res://World.tscn"
 config/icon="res://icon.png"
+
+[display]
+
+window/size/resizable=false
 
 [input]
 

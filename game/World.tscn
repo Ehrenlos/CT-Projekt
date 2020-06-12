@@ -1,13 +1,26 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://PlayerCharacter.tscn" type="PackedScene" id=1]
+[ext_resource path="res://GameMaster.tscn" type="PackedScene" id=2]
+[ext_resource path="res://GameMaster.gd" type="Script" id=3]
+[ext_resource path="res://ManaProgress.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Mobding.tscn" type="PackedScene" id=6]
 
 [node name="World" type="Node"]
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 527, 305 )
 
+[node name="Progress" parent="." instance=ExtResource( 4 )]
+
 [node name="border" type="StaticBody2D" parent="."]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="border"]
-polygon = PoolVector2Array( 0, 0, 1024, 0, 1024, 608, 0, 608, 0, 32, -32, 32, -32, 640, 1056, 640, 1056, -32, -32, -32, -32, 32, 0, 32, 0, 0 )
+scale = Vector2( 3.25835, 1.85266 )
+polygon = PoolVector2Array( 0, 0, 314.27, 0, 314.27, 328.176, 0, 328.176, 0, 32, -9.82092, 34.5448, -9.82092, 345.448, 324.09, 345.448, 324.09, -17.2724, -9.82092, -17.2724, -9.82092, 34.5448, 0, 32, 0, 0 )
+
+[node name="GameMaster" parent="." instance=ExtResource( 2 )]
+script = ExtResource( 3 )
+
+[node name="TargetMob" parent="." instance=ExtResource( 6 )]
+position = Vector2( 32, 32 )
