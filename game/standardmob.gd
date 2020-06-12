@@ -7,7 +7,7 @@ var pposition = Vector2()
 var dir = Vector2()
 
 func _init():
-	print("Spawn mob")
+	print("Spawn standard mob")
 
 func _ready():
 	pposition = get_parent().get_child(0).get_position()
@@ -19,6 +19,7 @@ func _physics_process(delta):
 	pposition = get_parent().get_child(0).get_position()
 	dir = _give_dir()
 	move_and_slide(dir * SPEED)
+	rotation = dir.angle()
 	
 	
 	if get_slide_count() > 0:
