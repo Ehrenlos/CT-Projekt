@@ -44,7 +44,7 @@ func _physics_process(delta):
 	
 	if controller.is_just_pressed(Controller.Button.ATTACK):
 		pposition = get_parent().get_child(0).get_position()
-		if pposition.distance_to(position) > 140:
+		if pposition.distance_to(position) > 150:
 			if use_mana(3):
 				spawn_mob(0)
 
