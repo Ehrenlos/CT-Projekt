@@ -1,6 +1,7 @@
 extends KinematicBody2D
 class_name RandomMob
 
+
 const WINDOW_HEIGHT = 600
 const WINDOW_WIDTH = 1066
 var SPEED = 300
@@ -12,6 +13,7 @@ var vectorholder = Vector2()
 var wait = 0
 var knockedback
 var knockdir
+
 var reduction = 6
 var lives = 2
 
@@ -25,6 +27,7 @@ func _ready():
 
 
 func _physics_process(delta):
+
 	if position.x < 0:
 		set_position(Vector2(0, position.y))
 		dir = -give_dir()
@@ -37,12 +40,13 @@ func _physics_process(delta):
 	if position.y > WINDOW_HEIGHT:
 		set_position(Vector2(position.x, WINDOW_HEIGHT))
 		dir = -give_dir()
-		
+
 	if knockedback == true:
 		knockmobback()
 	else:
 		if wait <= 0:
 			randomNr = randi()%360+1
+
 			dir = give_dir()
 			move_and_slide(dir * SPEED)
 			wait = 60
@@ -58,24 +62,30 @@ func _physics_process(delta):
 		if collision.collider.is_in_group("Weapon"):
 			on_hit(collision.collider)
 
+
 func give_dir():
+
 	vectorholder = Vector2( sin(randomNr) , cos(randomNr) ).normalized()
 	return vectorholder
 	
 func on_hit(collider):
 	knockedback = true
+
 	reduction = 16
 	if lives > 0:
 		lives -= 1
 	else:
 		queue_free()
 
+
 func give_knockdir():
 	return (position - pposition).normalized()
 
 func knockmobback():
 	knockdir = give_knockdir()
+
 	move_and_slide(knockdir * SPEED * reduction )
+
 	if reduction > 1 :
 		reduction = reduction / 2
 	else:
