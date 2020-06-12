@@ -1,0 +1,43 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Start_Game.png" type="Texture" id=1]
+[ext_resource path="res://Cursor.gd" type="Script" id=2]
+[ext_resource path="res://Cursor.png" type="Texture" id=3]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 12.1986
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 224, 32 )
+
+[node name="TitleScreen" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Cursor" type="KinematicBody2D" parent="."]
+z_index = 10
+script = ExtResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="Cursor"]
+position = Vector2( 16, 16 )
+texture = ExtResource( 3 )
+
+[node name="Area2D" type="Area2D" parent="Cursor"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Cursor/Area2D"]
+shape = SubResource( 1 )
+
+[node name="Start_Game" type="Area2D" parent="."]
+position = Vector2( 128, 96 )
+
+[node name="CollisionShape" type="CollisionShape2D" parent="Start_Game"]
+position = Vector2( 96, 32 )
+shape = SubResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="Start_Game"]
+position = Vector2( 96, 32 )
+scale = Vector2( 0.905063, 0.905063 )
+texture = ExtResource( 1 )

@@ -25,11 +25,6 @@ _global_script_classes=[ {
 "path": "res://PlayerCharacter.gd"
 }, {
 "base": "KinematicBody2D",
-"class": "RandomMob",
-"language": "GDScript",
-"path": "res://RandomMob.gd"
-}, {
-"base": "KinematicBody2D",
 "class": "StandardMob",
 "language": "GDScript",
 "path": "res://standardmob.gd"
@@ -38,19 +33,21 @@ _global_script_class_icons={
 "Controller": "",
 "GameMaster": "",
 "PlayerCharacter": "",
-"RandomMob": "",
 "StandardMob": ""
 }
 
 [application]
 
 config/name="game"
-run/main_scene="res://World.tscn"
+run/main_scene="res://TitleScreen.tscn"
 config/icon="res://icon.png"
 
 [display]
 
-window/size/resizable=false
+window/size/width=1066
+window/vsync/use_vsync=false
+window/stretch/mode="2d"
+window/stretch/aspect="keep_width"
 
 [input]
 
@@ -162,6 +159,51 @@ ui_down={
 "events": [ Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":0,"button_index":7,"pressure":0.0,"pressed":false,"script":null)
  ]
 }
+0_ESC={
+"deadzone": 0.5,
+"events": [ Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":0,"button_index":10,"pressure":0.0,"pressed":false,"script":null)
+ ]
+}
+10_left={
+"deadzone": 0.2,
+"events": [ Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":1,"axis":0,"axis_value":-1.0,"script":null)
+ ]
+}
+10_right={
+"deadzone": 0.2,
+"events": [ Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":1,"axis":0,"axis_value":1.0,"script":null)
+ ]
+}
+10_up={
+"deadzone": 0.2,
+"events": [ Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":1,"axis":1,"axis_value":-1.0,"script":null)
+ ]
+}
+10_down={
+"deadzone": 0.2,
+"events": [ Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":1,"axis":1,"axis_value":1.0,"script":null)
+ ]
+}
+11_left={
+"deadzone": 0.2,
+"events": [ Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":1,"axis":2,"axis_value":-1.0,"script":null)
+ ]
+}
+11_right={
+"deadzone": 0.2,
+"events": [ Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":1,"axis":2,"axis_value":1.0,"script":null)
+ ]
+}
+11_up={
+"deadzone": 0.2,
+"events": [ Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":1,"axis":3,"axis_value":-1.0,"script":null)
+ ]
+}
+11_down={
+"deadzone": 0.2,
+"events": [ Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":1,"axis":3,"axis_value":1.0,"script":null)
+ ]
+}
 4_L1={
 "deadzone": 0.5,
 "events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":2,"pressed":false,"doubleclick":false,"script":null)
@@ -174,15 +216,41 @@ ui_down={
 }
 4_L2={
 "deadzone": 0.5,
-"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777237,"unicode":0,"echo":false,"script":null)
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":1,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777237,"unicode":0,"echo":false,"script":null)
  ]
 }
 4_R2={
 "deadzone": 0.5,
-"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":32,"unicode":0,"echo":false,"script":null)
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":1,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":32,"unicode":0,"echo":false,"script":null)
+ ]
+}
+4_ESC={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":1,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777217,"unicode":0,"echo":false,"script":null)
+ ]
+}
+1_L1={
+"deadzone": 0.5,
+"events": [ Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":1,"button_index":4,"pressure":0.0,"pressed":false,"script":null)
+ ]
+}
+1_R1={
+"deadzone": 0.5,
+"events": [ Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":1,"button_index":5,"pressure":0.0,"pressed":false,"script":null)
+ ]
+}
+1_L2={
+"deadzone": 0.5,
+"events": [ Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":1,"button_index":6,"pressure":0.0,"pressed":false,"script":null)
+ ]
+}
+1_R2={
+"deadzone": 0.5,
+"events": [ Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":1,"button_index":7,"pressure":0.0,"pressed":false,"script":null)
  ]
 }
 
 [rendering]
 
+environment/default_clear_color=Color( 0, 0.494118, 0, 1 )
 environment/default_environment="res://default_env.tres"

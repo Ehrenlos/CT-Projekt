@@ -5,13 +5,9 @@ var SPEED = 200
 var pdirection = Vector2() 
 var pposition = Vector2()
 var dir = Vector2()
-var knockedback
-var knockdir
-var reduction = 4
-var counter = 3
 
 func _init():
-	print("Spawn mob")
+	print("Spawn standard mob")
 
 func _ready():
 	pposition = get_parent().get_child(0).get_position()
@@ -21,18 +17,9 @@ func _ready():
 
 func _physics_process(delta):
 	pposition = get_parent().get_child(0).get_position()
-	if knockedback == true:
-		knockdir = give_knockdir()
-		move_and_slide(knockdir * SPEED / reduction )
-		reduction = reduction / 2
-		if counter >= 0:
-			counter = counter -1
-		else:
-			knockedback = false
-			reduction = 4
-	else:
-		dir = _give_dir()
-		move_and_slide(dir * SPEED)
+	dir = _give_dir()
+	move_and_slide(dir * SPEED)
+	rotation = dir.angle()
 	
 	
 	if get_slide_count() > 0:
@@ -46,7 +33,4 @@ func _give_dir():
 	return (pposition - position).normalized()
 
 func on_hit(collider):
-	knockedback = true
-
-func give_knockdir():
-	return (position - pposition).normalized()
+	queue_free()
