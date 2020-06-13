@@ -3,7 +3,7 @@ class_name Controller
 
 enum Device {C0, C1, C2, C3, KEYBOARD}
 enum Analog_Stick {LEFT, RIGHT}
-const Button = {L="L1", R="R1", ZL="L2", ZR="R2", ATTACK="R1", PAUSE="ESC"}
+const Button = {L="L1", R="R1", ZL="L2", ZR="R2", ATTACK="R1", PAUSE="ESC", A="A", B="B"}
 
 func _init(init_device=Device.KEYBOARD):
 	set_device(init_device)
