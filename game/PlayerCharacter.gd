@@ -35,6 +35,8 @@ func _physics_process(delta):
 		rotation = controller.get_input_axis(1).angle()
 	motion = move_and_slide(motion)
 	
+
+	
 	if position.x < 32:
 		set_position(Vector2(32, position.y))
 	if position.x > WINDOW_WIDTH - 32:
@@ -64,6 +66,7 @@ func get_position():
 func on_hit(collider):
 	collider.on_hit(self)
 	lives -= 1
+	print("Lives:", lives)
 	if lives <= 0:
 		on_death()
 
