@@ -3,6 +3,7 @@ var timer
 var time = 60
 
 func _ready():
+	Global.set_time(time)
 	timer = Timer.new()
 	timer.connect("timeout", self, "on_timer_timeout")
 	timer.set_wait_time(1)
@@ -14,6 +15,7 @@ func _process(delta):
 	text = str(time)
 
 func on_timer_timeout():
+	Global.set_time(time)
 	if time <= 0:
 		get_tree().change_scene("Game Over.tscn")
 	else:

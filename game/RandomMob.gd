@@ -50,7 +50,7 @@ func _physics_process(delta):
 			dir = give_dir()
 			move_and_slide(dir * SPEED)
 			wait = 60
-			print(randomNr)
+			#print(randomNr)
 		else:
 			move_and_slide(dir * SPEED)
 			wait = wait-1
@@ -71,11 +71,11 @@ func give_dir():
 func on_hit(collider):
 	knockedback = true
 
-	reduction = 16
-	if lives > 0:
+	reduction = 24
+	if lives > 1:
 		lives -= 1
 	else:
-		queue_free()
+		die(collider)
 
 
 func give_knockdir():
@@ -90,3 +90,9 @@ func knockmobback():
 		reduction = reduction / 2
 	else:
 		knockedback = false
+
+func die(killer):
+	if killer.is_in_group("Weapon"):
+		if randi()%100<=10:
+			GameWorld.dropHeart(position, get_parent())
+	queue_free()
