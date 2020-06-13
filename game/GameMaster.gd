@@ -32,12 +32,12 @@ func _process(delta):
 		motion = Vector2.ZERO
 		apply_movement(controller.get_input_axis(0) * delta)
 		motion = move_and_slide(motion)
-	if position.x < 0:
-		set_position(Vector2(0, position.y))
+	if position.x < 16:
+		set_position(Vector2(16, position.y))
 	if position.x > WINDOW_WIDTH - 16:
 		set_position(Vector2(WINDOW_WIDTH - 16, position.y))
-	if position.y < 0:
-		set_position(Vector2(position.x, 0))
+	if position.y < 16:
+		set_position(Vector2(position.x, 16))
 	if position.y > WINDOW_HEIGHT - 16:
 		set_position(Vector2(position.x, WINDOW_HEIGHT - 16))
 	

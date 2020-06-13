@@ -13,6 +13,10 @@ extents = Vector2( 224, 32 )
 [node name="TitleScreen" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_left = 0.291988
+margin_top = -0.583977
+margin_right = 0.291992
+margin_bottom = -0.583984
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -22,7 +26,7 @@ z_index = 10
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="Cursor"]
-position = Vector2( 16, 16 )
+position = Vector2( 9.02639, 8.63896 )
 texture = ExtResource( 3 )
 
 [node name="Area2D" type="Area2D" parent="Cursor"]

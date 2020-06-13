@@ -10,8 +10,11 @@ var lives = 3
 const WINDOW_HEIGHT = 600
 const WINDOW_WIDTH = 1066
 
-func _init(device = Controller.Device.C0):
+func _init(device = Controller.Device.KEYBOARD):
 	controller = Controller.new(device)
+	if device == Controller.Device.KEYBOARD:
+		Input.set_custom_mouse_cursor(load("res://Cursor.png"))
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	
 
 func _ready():
