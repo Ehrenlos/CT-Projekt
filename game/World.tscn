@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://PlayerCharacter.tscn" type="PackedScene" id=1]
 [ext_resource path="res://GameMaster.tscn" type="PackedScene" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://ManaProgress.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Progframe.png" type="Texture" id=5]
 [ext_resource path="res://Progbar.png" type="Texture" id=6]
+[ext_resource path="res://Time.gd" type="Script" id=7]
 
 [node name="World" type="Node"]
 
@@ -31,3 +32,14 @@ tint_over = Color( 0, 0, 0, 1 )
 position = Vector2( -96, -32 )
 z_index = 4
 script = ExtResource( 3 )
+
+[node name="Time" type="Label" parent="."]
+margin_left = 999.264
+margin_top = 14.9433
+margin_right = 1015.26
+margin_bottom = 28.9433
+text = "00"
+script = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
