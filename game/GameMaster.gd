@@ -5,6 +5,7 @@ const MAX_MANA = 10
 var progress 
 var prog_timer
 var pposition = Vector2()
+var mobCosts = {STANDARD=2, RANDOM=3}
 
 const SPEED = 800
 var motion = Vector2.ZERO
@@ -13,7 +14,7 @@ var controller
 const WINDOW_HEIGHT = 600
 const WINDOW_WIDTH = 1066
 
-func _init(device = Controller.Device.KEYBOARD):
+func _init(device = Controller.Device.C0):
 	controller = Controller.new(device)
 
 func _ready():
@@ -42,11 +43,16 @@ func _process(delta):
 		set_position(Vector2(position.x, WINDOW_HEIGHT - 16))
 	
 	
-	if controller.is_just_pressed(Controller.Button.ATTACK):
+	if controller.is_just_pressed(Controller.Button.A):
 		pposition = get_parent().get_child(0).get_position()
 		if pposition.distance_to(position) > 150:
-			if use_mana(3):
+			if use_mana(mobCosts.STANDARD):
 				spawn_mob(0)
+	if controller.is_just_pressed(Controller.Button.B):
+		pposition = get_parent().get_child(0).get_position()
+		if pposition.distance_to(position) > 150:
+			if use_mana(mobCosts.RANDOM):
+				spawn_mob(1)
 
 func apply_movement(acceleration):
 	motion += acceleration
@@ -73,5 +79,6 @@ func spawn_mob(index):
 	match index:
 		0: 
 			mob = preload("res://MobDing.tscn").instance()
+		1: mob = preload("res://RandomMob.tscn").instance()
 	mob.set_position(position)
 	get_parent().add_child(mob)
