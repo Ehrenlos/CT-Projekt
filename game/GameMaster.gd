@@ -12,7 +12,7 @@ var motion = Vector2.ZERO
 var controller
 
 const WINDOW_HEIGHT = 600
-const WINDOW_WIDTH = 1066
+const WINDOW_WIDTH = 927
 
 func _init(device = Controller.Device.C0):
 	controller = Controller.new(device)

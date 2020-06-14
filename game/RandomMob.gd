@@ -3,7 +3,7 @@ class_name RandomMob
 
 
 const WINDOW_HEIGHT = 600
-const WINDOW_WIDTH = 1066
+const WINDOW_WIDTH = 927
 var SPEED = 300
 var pdirection = Vector2() 
 var pposition = Vector2()
