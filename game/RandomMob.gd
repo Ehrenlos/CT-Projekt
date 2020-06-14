@@ -69,13 +69,14 @@ func give_dir():
 	return vectorholder
 	
 func on_hit(collider):
-	knockedback = true
+	if !knockedback:
+		knockedback = true
 
-	reduction = 24
-	if lives > 1:
-		lives -= 1
-	else:
-		die(collider)
+		reduction = 8
+		if lives > 1:
+			lives -= 1
+		else:
+			die(collider)
 
 
 func give_knockdir():

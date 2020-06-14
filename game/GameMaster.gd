@@ -19,7 +19,7 @@ func _init(device = Controller.Device.C0):
 
 func _ready():
 	add_to_group("GameMaster")
-	progress = get_parent().get_child(1)
+	progress = get_parent().get_node("UI/Progress")
 	prog_timer = Timer.new()
 	prog_timer.connect("timeout", self, "on_prog_timer_timeout")
 	prog_timer.set_wait_time(0.01)
