@@ -35,9 +35,19 @@ _global_script_classes=[ {
 "path": "res://RandomMob.gd"
 }, {
 "base": "KinematicBody2D",
+"class": "ShootingMob",
+"language": "GDScript",
+"path": "res://Shooting mob.gd"
+}, {
+"base": "KinematicBody2D",
 "class": "StandardMob",
 "language": "GDScript",
 "path": "res://standardmob.gd"
+}, {
+"base": "KinematicBody2D",
+"class": "bullet",
+"language": "GDScript",
+"path": "res://bullet.gd"
 } ]
 _global_script_class_icons={
 "Controller": "",
@@ -45,7 +55,9 @@ _global_script_class_icons={
 "GameWorld": "",
 "PlayerCharacter": "",
 "RandomMob": "",
-"StandardMob": ""
+"ShootingMob": "",
+"StandardMob": "",
+"bullet": ""
 }
 
 [application]

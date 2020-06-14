@@ -14,7 +14,7 @@ func _ready():
 	c0 = Controller.new(Controller.Device.C0)
 	kb = Controller.new(Controller.Device.KEYBOARD)
 	area = get_node("Area2D")
-    
+	
 
 func _process(delta):
 	
