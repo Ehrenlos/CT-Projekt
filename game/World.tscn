@@ -1,5 +1,6 @@
 [gd_scene load_steps=14 format=2]
 
+
 [ext_resource path="res://PlayerCharacter.tscn" type="PackedScene" id=1]
 [ext_resource path="res://GameMaster.tscn" type="PackedScene" id=2]
 [ext_resource path="res://GameMaster.gd" type="Script" id=3]
@@ -13,6 +14,9 @@
 [ext_resource path="res://B-Button.png" type="Texture" id=11]
 [ext_resource path="res://goomba.png" type="Texture" id=12]
 [ext_resource path="res://ui_bg.png" type="Texture" id=13]
+
+[ext_resource path="res://ShootingMob.tscn" type="PackedScene" id=9]
+
 
 [node name="World" type="Node"]
 script = ExtResource( 8 )
@@ -106,3 +110,5 @@ scale = Vector2( 5.25, 19.52 )
 z_index = -2
 texture = ExtResource( 13 )
 offset = Vector2( -10.3529, -13.44 )
+[node name="ShootingMob" parent="." instance=ExtResource( 9 )]
+
