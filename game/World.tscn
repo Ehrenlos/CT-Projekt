@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://PlayerCharacter.tscn" type="PackedScene" id=1]
 [ext_resource path="res://GameMaster.tscn" type="PackedScene" id=2]
@@ -16,7 +16,6 @@
 [ext_resource path="res://bg.png" type="Texture" id=14]
 [ext_resource path="res://X-Button.png" type="Texture" id=15]
 [ext_resource path="res://stalfaux.png" type="Texture" id=16]
-[ext_resource path="res://mobspawner.tscn" type="PackedScene" id=17]
 
 [node name="World" type="Node"]
 script = ExtResource( 8 )
@@ -35,7 +34,7 @@ script = ExtResource( 3 )
 [node name="UI" type="Node2D" parent="."]
 
 [node name="bg" type="Sprite" parent="UI"]
-position = Vector2( 464.681, 302 )
+position = Vector2( 464, 302 )
 scale = Vector2( 1, 1.00667 )
 z_index = -8
 texture = ExtResource( 14 )
@@ -138,6 +137,3 @@ scale = Vector2( 5.08441, 19.8401 )
 z_index = -2
 texture = ExtResource( 13 )
 offset = Vector2( -10.3529, -13.44 )
-
-[node name="mobspawner" parent="." instance=ExtResource( 17 )]
-position = Vector2( 103.865, 86.843 )

@@ -52,6 +52,13 @@ func _physics_process(delta):
 		add_child(sword)
 		attack_ready = false
 		attack_timer.start()
+	
+	if controller.is_just_pressed(Controller.Buttton.SHOOT) && shoot_ready:
+		var shot = preload("res://playershot.tscn")
+		sword.add_tp_group('Weapon')
+		add_child(shot)
+		attack_ready = false
+		shoot_timer.start()
 
 func apply_movement(acceleration):
 	motion += acceleration
