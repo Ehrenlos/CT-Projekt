@@ -5,7 +5,7 @@ var SPEED = 1
 
 enum Player {GM, P0, P1, P2, P3}
 
-var GM_CTRL = Controller.Device.KEYBOARD
+var GM_CTRL = Controller.Device.C1
 var P0_CTRL = Controller.Device.C0
 
 func set_ctrl(player, ctrl):
