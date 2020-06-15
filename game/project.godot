@@ -30,16 +30,34 @@ _global_script_classes=[ {
 "path": "res://RandomMob.gd"
 }, {
 "base": "KinematicBody2D",
+"class": "ShootingMob",
+"language": "GDScript",
+"path": "res://Shooting mob.gd"
+}, {
+"base": "KinematicBody2D",
 "class": "StandardMob",
 "language": "GDScript",
 "path": "res://standardmob.gd"
+}, {
+"base": "KinematicBody2D",
+"class": "mobspawner",
+"language": "GDScript",
+"path": "res://mobspawner.gd"
+}, {
+"base": "KinematicBody2D",
+"class": "playershot",
+"language": "GDScript",
+"path": "res://playershot.gd"
 } ]
 _global_script_class_icons={
 "Controller": "",
 "GameMaster": "",
 "PlayerCharacter": "",
 "RandomMob": "",
-"StandardMob": ""
+"ShootingMob": "",
+"StandardMob": "",
+"mobspawner": "",
+"playershot": ""
 }
 
 [application]

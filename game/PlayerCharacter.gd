@@ -58,8 +58,6 @@ func _physics_process(delta):
 		add_child(sword)
 		attack_ready = false
 		attack_timer.start()
-<<<<<<< HEAD
-=======
 	
 	if controller.is_just_pressed(Controller.Button.SHOOT) && shoot_ready:
 		print("Shoot")
@@ -69,7 +67,6 @@ func _physics_process(delta):
 		get_parent().add_child(shot)
 		shoot_ready = false
 		shoot_timer.start()
->>>>>>> SANS UNDERTALE
 
 func apply_movement(acceleration):
 	motion += acceleration
