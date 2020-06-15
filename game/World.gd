@@ -1,16 +1,18 @@
 extends Node
 
+class_name GameWorld
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
-
-# Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	$Music.play(0)
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+static func dropHeart(pos, world):
+	var heart = preload("res://Heart.tscn").instance()
+	heart.set_position(pos)
+	world.add_child(heart)
+	print("Heart dropped at:", pos)
+
+static func addGrave(pos, world):
+	var grave = preload("res://grave.tscn").instance()
+	grave.set_position(pos)
+	world.add_child(grave)

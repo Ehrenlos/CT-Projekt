@@ -34,11 +34,13 @@ func _give_dir():
 
 func on_hit(collider):
 
+
 	if collider.name == "playershot":
 		collider.on_hit(self)
 	die(collider)
-	
-func die(killer):
+e(killer):
+	Sound.get_node("Standardmob/Die").play(0)
+	GameWorld.addGrave(position, get_parent())
 	if killer.is_in_group("Weapon"):
 		if randi()%100<=10:
 			GameWorld.dropHeart(position, get_parent())

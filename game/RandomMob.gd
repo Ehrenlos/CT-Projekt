@@ -3,7 +3,7 @@ class_name RandomMob
 
 
 const WINDOW_HEIGHT = 600
-const WINDOW_WIDTH = 1066
+const WINDOW_WIDTH = 923
 var SPEED = 300
 var pdirection = Vector2() 
 var pposition = Vector2()
@@ -28,17 +28,17 @@ func _ready():
 
 func _physics_process(delta):
 
-	if position.x < 0:
-		set_position(Vector2(0, position.y))
+	if position.x < 16:
+		set_position(Vector2(16, position.y))
 		dir = -give_dir()
 	if position.x > WINDOW_WIDTH:
-		set_position(Vector2(WINDOW_WIDTH, position.y))
+		set_position(Vector2(WINDOW_WIDTH - 16, position.y))
 		dir = -give_dir()
-	if position.y < 0:
-		set_position(Vector2(position.x, 0))
+	if position.y < 16:
+		set_position(Vector2(position.x, 16))
 		dir = -give_dir()
 	if position.y > WINDOW_HEIGHT:
-		set_position(Vector2(position.x, WINDOW_HEIGHT))
+		set_position(Vector2(position.x, WINDOW_HEIGHT - 16))
 		dir = -give_dir()
 
 	if knockedback == true:
@@ -50,7 +50,7 @@ func _physics_process(delta):
 			dir = give_dir()
 			move_and_slide(dir * SPEED)
 			wait = 60
-			print(randomNr)
+			#print(randomNr)
 		else:
 			move_and_slide(dir * SPEED)
 			wait = wait-1
@@ -72,14 +72,16 @@ func on_hit(collider):
 
 	if collider.name == "playershot":
 		collider.on_hit(self)
+
 	if !knockedback:
 		knockedback = true
 
-	reduction = 16
-	if lives > 0:
-		lives -= 1
-	else:
-		queue_free()
+		reduction = 24
+		if lives > 1:
+			Sound.get_node("Random mob/Block").play()
+			lives -= 1
+		else:
+			die(collider)
 
 
 func give_knockdir():
@@ -94,3 +96,11 @@ func knockmobback():
 		reduction = reduction / 2
 	else:
 		knockedback = false
+
+func die(killer):
+	Sound.get_node("Random mob/Die").play()	
+	GameWorld.addGrave(position, get_parent())
+	if killer.is_in_group("Weapon"):
+		if randi()%100<=10:
+			GameWorld.dropHeart(position, get_parent())
+	queue_free()

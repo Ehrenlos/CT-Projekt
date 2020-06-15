@@ -6,6 +6,7 @@ enum Analog_Stick {LEFT, RIGHT}
 
 const Button = {L="L1", R="R1", ZL="L2", ZR="R2", ATTACK="R1", SHOOT="L1", PAUSE="ESC", A="A", B="B", X="X", Y="Y"}
 
+
 func _init(init_device=Device.KEYBOARD):
 	set_device(init_device)
 
