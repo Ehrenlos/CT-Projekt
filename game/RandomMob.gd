@@ -3,7 +3,7 @@ class_name RandomMob
 
 
 const WINDOW_HEIGHT = 600
-const WINDOW_WIDTH = 927
+const WINDOW_WIDTH = 923
 var SPEED = 300
 var pdirection = Vector2() 
 var pposition = Vector2()
@@ -28,17 +28,17 @@ func _ready():
 
 func _physics_process(delta):
 
-	if position.x < 0:
-		set_position(Vector2(0, position.y))
+	if position.x < 16:
+		set_position(Vector2(16, position.y))
 		dir = -give_dir()
 	if position.x > WINDOW_WIDTH:
-		set_position(Vector2(WINDOW_WIDTH, position.y))
+		set_position(Vector2(WINDOW_WIDTH - 16, position.y))
 		dir = -give_dir()
-	if position.y < 0:
-		set_position(Vector2(position.x, 0))
+	if position.y < 16:
+		set_position(Vector2(position.x, 16))
 		dir = -give_dir()
 	if position.y > WINDOW_HEIGHT:
-		set_position(Vector2(position.x, WINDOW_HEIGHT))
+		set_position(Vector2(position.x, WINDOW_HEIGHT - 16))
 		dir = -give_dir()
 
 	if knockedback == true:
@@ -72,7 +72,7 @@ func on_hit(collider):
 	if !knockedback:
 		knockedback = true
 
-		reduction = 8
+		reduction = 24
 		if lives > 1:
 			lives -= 1
 		else:

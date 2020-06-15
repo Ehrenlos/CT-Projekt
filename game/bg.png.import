@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/stalfaux.png-bbfcf83486d10d1506d798aadc171ab2.stex"
+path="res://.import/bg.png-24bff804693ee063127ad100e04c5185.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://stalfaux.png"
-dest_files=[ "res://.import/stalfaux.png-bbfcf83486d10d1506d798aadc171ab2.stex" ]
+source_file="res://bg.png"
+dest_files=[ "res://.import/bg.png-24bff804693ee063127ad100e04c5185.stex" ]
 
 [params]
 
