@@ -48,6 +48,11 @@ _global_script_classes=[ {
 "class": "bullet",
 "language": "GDScript",
 "path": "res://bullet.gd"
+}, {
+"base": "KinematicBody2D",
+"class": "mobspawner",
+"language": "GDScript",
+"path": "res://mobspawner.gd"
 } ]
 _global_script_class_icons={
 "Controller": "",
@@ -57,7 +62,8 @@ _global_script_class_icons={
 "RandomMob": "",
 "ShootingMob": "",
 "StandardMob": "",
-"bullet": ""
+"bullet": "",
+"mobspawner": ""
 }
 
 [application]
