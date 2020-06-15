@@ -1,0 +1,44 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://sounds/splat.wav" type="AudioStream" id=1]
+[ext_resource path="res://sounds/block.wav" type="AudioStream" id=2]
+[ext_resource path="res://sounds/bullet hit.wav" type="AudioStream" id=3]
+[ext_resource path="res://sounds/shoot.wav" type="AudioStream" id=4]
+
+[node name="Sound" type="Node"]
+
+[node name="Standardmob" type="Node" parent="."]
+
+[node name="Die" type="AudioStreamPlayer" parent="Standardmob"]
+stream = ExtResource( 1 )
+bus = "Standard mob"
+
+[node name="Random mob" type="Node" parent="."]
+
+[node name="Block" type="AudioStreamPlayer" parent="Random mob"]
+stream = ExtResource( 2 )
+bus = "Random mob"
+
+[node name="Die" type="AudioStreamPlayer" parent="Random mob"]
+stream = ExtResource( 1 )
+bus = "Random mob"
+
+[node name="Shooting mob" type="Node" parent="."]
+
+[node name="Block" type="AudioStreamPlayer" parent="Shooting mob"]
+stream = ExtResource( 2 )
+bus = "Shooting mob"
+
+[node name="Die" type="AudioStreamPlayer" parent="Shooting mob"]
+stream = ExtResource( 1 )
+bus = "Shooting mob"
+
+[node name="Bullet_Hit" type="AudioStreamPlayer" parent="Shooting mob"]
+stream = ExtResource( 3 )
+bus = "Shooting mob"
+
+[node name="Shoot" type="AudioStreamPlayer" parent="Shooting mob"]
+stream = ExtResource( 4 )
+bus = "Shooting mob"
+
+[node name="Spawner" type="Node" parent="."]

@@ -74,6 +74,7 @@ func on_hit(collider):
 
 		reduction = 24
 		if lives > 1:
+			Sound.get_node("Random mob/Block").play()
 			lives -= 1
 		else:
 			die(collider)
@@ -93,6 +94,8 @@ func knockmobback():
 		knockedback = false
 
 func die(killer):
+	Sound.get_node("Random mob/Die").play()	
+	GameWorld.addGrave(position, get_parent())
 	if killer.is_in_group("Weapon"):
 		if randi()%100<=10:
 			GameWorld.dropHeart(position, get_parent())

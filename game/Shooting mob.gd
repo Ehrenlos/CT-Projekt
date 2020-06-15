@@ -82,6 +82,7 @@ func on_hit(collider):
 	
 		reduction = 24
 		if lives > 1:
+			Sound.get_node("Shooting mob/Block").play()
 			lives -= 1
 		else:
 			die(collider)
@@ -101,6 +102,8 @@ func knockmobback():
 		knockedback = false
 
 func die(killer):
+	Sound.get_node("Shooting mob/Die").play()
+	GameWorld.addGrave(position, get_parent())
 	if killer.is_in_group("Weapon"):
 		if randi()%100<=10:
 			GameWorld.dropHeart(position, get_parent())
@@ -112,5 +115,6 @@ func shoot():
 	bullet = preload("res://bullet.tscn").instance()
 	bullet.set_position(position)
 	get_parent().add_child(bullet)
+	Sound.get_node("Shooting mob/Shoot").play()
 	print("shoot")
 
