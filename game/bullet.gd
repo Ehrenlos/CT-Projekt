@@ -20,7 +20,7 @@ func _physics_process(delta):
 	if TTL.is_stopped():
 		print("despawn bullet")
 		queue_free()
-	
+	 #a
 	
 	move_and_slide(dir * SPEED)
 	rotation = dir.angle()
