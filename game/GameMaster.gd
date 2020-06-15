@@ -14,7 +14,7 @@ var controller
 const WINDOW_HEIGHT = 600
 const WINDOW_WIDTH = 927
 
-func _init(device = Controller.Device.KEYBOARD):
+func _init(device = Global.get_ctrl(Global.Player.GM)):
 	controller = Controller.new(device)
 
 func _ready():
@@ -65,7 +65,7 @@ func apply_movement(acceleration):
 
 func inc_mana():
 	if mana < MAX_MANA*100:
-		mana += 1
+		mana += 1.6 * Global.SPEED
 
 func use_mana(cost):
 	if mana >= cost*100:
