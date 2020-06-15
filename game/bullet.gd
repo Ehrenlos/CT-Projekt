@@ -1,23 +1,27 @@
 extends KinematicBody2D
-class_name StandardMob
-
-var SPEED = 200
-var pdirection = Vector2() 
-var pposition = Vector2()
+class_name bullet
+var SPEED = 500
 var dir = Vector2()
+var Pdirection = Vector2()
+var pposition = Vector2()
+onready var TTL = $TTL
 
 func _init():
-	print("Spawn standard mob")
+	print("Spawn bullet")
+
 
 func _ready():
 	pposition = get_parent().get_child(0).get_position()
-	add_to_group("Mobs")
-
-
+	dir = _give_dir()
+	
 
 func _physics_process(delta):
-	pposition = get_parent().get_child(0).get_position()
-	dir = _give_dir()
+	
+	if TTL.is_stopped():
+		print("despawn bullet")
+		queue_free()
+	
+	
 	move_and_slide(dir * SPEED)
 	rotation = dir.angle()
 	
@@ -35,8 +39,5 @@ func _give_dir():
 func on_hit(collider):
 	die(collider)
 	
-func die(killer):
-	if killer.is_in_group("Weapon"):
-		if randi()%100<=10:
-			GameWorld.dropHeart(position, get_parent())
+func die(_killer):
 	queue_free()

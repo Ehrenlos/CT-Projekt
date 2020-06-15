@@ -1,10 +1,10 @@
 extends KinematicBody2D
-class_name RandomMob
+class_name mobspawner
 
 
 const WINDOW_HEIGHT = 600
-const WINDOW_WIDTH = 923
-var SPEED = 300
+const WINDOW_WIDTH = 927
+var SPEED = 0
 var pdirection = Vector2() 
 var pposition = Vector2()
 var dir = Vector2()
@@ -13,31 +13,38 @@ var vectorholder = Vector2()
 var wait = 0
 var knockedback
 var knockdir
+onready var attack_cooldown = $attack_cooldown
+
 
 var reduction = 6
 var lives = 2
 
 func _init():
-	print("Spawn RandomMob")
+	print("Spawn mobspawner")
+	
 
 func _ready():
-	pposition = get_parent().get_child(0).get_position()
 	add_to_group("Mobs")
-
+	attack_cooldown.start()
+	
 
 
 func _physics_process(delta):
-
+	
+	if attack_cooldown.is_stopped():
+		shoot()
+		attack_cooldown.start()
+	
 	if position.x < 16:
 		set_position(Vector2(16, position.y))
 		dir = -give_dir()
-	if position.x > WINDOW_WIDTH:
+	if position.x > WINDOW_WIDTH - 16:
 		set_position(Vector2(WINDOW_WIDTH - 16, position.y))
 		dir = -give_dir()
 	if position.y < 16:
 		set_position(Vector2(position.x, 16))
 		dir = -give_dir()
-	if position.y > WINDOW_HEIGHT:
+	if position.y > WINDOW_HEIGHT - 16:
 		set_position(Vector2(position.x, WINDOW_HEIGHT - 16))
 		dir = -give_dir()
 
@@ -71,7 +78,7 @@ func give_dir():
 func on_hit(collider):
 	if !knockedback:
 		knockedback = true
-
+	
 		reduction = 24
 		if lives > 1:
 			lives -= 1
@@ -97,3 +104,12 @@ func die(killer):
 		if randi()%100<=10:
 			GameWorld.dropHeart(position, get_parent())
 	queue_free()
+
+func shoot():
+	
+	var mob
+	mob = preload("res://Mobding.tscn").instance()
+	mob.set_position(Vector2(position.x + 50 , position.y + 50))
+	get_parent().add_child(mob)
+	print("spawn")
+
