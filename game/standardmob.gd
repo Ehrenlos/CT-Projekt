@@ -24,10 +24,11 @@ func _physics_process(delta):
 	
 	if get_slide_count() > 0:
 		var collision = get_slide_collision(get_slide_count()-1)
-		if collision.collider.is_in_group("Player"):
-			collision.collider.on_hit(self)
 		if collision.collider.is_in_group("Weapon"):
 			on_hit(collision.collider)
+		elif collision.collider.is_in_group("Player"):
+			collision.collider.on_hit(self)
+		
 
 func _give_dir():
 	return (pposition - position).normalized()

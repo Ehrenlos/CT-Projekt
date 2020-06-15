@@ -17,7 +17,7 @@ onready var attack_cooldown = $attack_cooldown
 
 
 var reduction = 6
-var lives = 2
+var lives = 9
 
 func _init():
 	print("Spawn mobspawner")
@@ -64,10 +64,10 @@ func _physics_process(delta):
 	
 	if get_slide_count() > 0:
 		var collision = get_slide_collision(get_slide_count()-1)
-		if collision.collider.is_in_group("Player"):
-			collision.collider.on_hit(self)
 		if collision.collider.is_in_group("Weapon"):
 			on_hit(collision.collider)
+		elif collision.collider.is_in_group("Player"):
+			collision.collider.on_hit(self)
 
 
 func give_dir():
@@ -76,7 +76,8 @@ func give_dir():
 	return vectorholder
 	
 func on_hit(collider):
-	if !knockedback:
+	if !knockedback && collider.is_in_group("Weapon"):
+		
 		knockedback = true
 	
 		reduction = 24
@@ -100,6 +101,8 @@ func knockmobback():
 		knockedback = false
 
 func die(killer):
+	Sound.get_node("Spawner/Die").play(0)
+	GameWorld.addGrave(position, get_parent())
 	if killer.is_in_group("Weapon"):
 		if randi()%100<=10:
 			GameWorld.dropHeart(position, get_parent())
