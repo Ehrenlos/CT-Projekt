@@ -8,9 +8,9 @@ var attack_ready
 var attack_timer
 var lives = 3
 const WINDOW_HEIGHT = 600
-const WINDOW_WIDTH = 1066
+const WINDOW_WIDTH = 927
 
-func _init(device = Controller.Device.KEYBOARD):
+func _init(device = Controller.Device.C0):
 	controller = Controller.new(device)
 	if device == Controller.Device.KEYBOARD:
 		Input.set_custom_mouse_cursor(load("res://Cursor.png"))
@@ -37,14 +37,14 @@ func _physics_process(delta):
 	
 
 	
-	if position.x < 32:
-		set_position(Vector2(32, position.y))
-	if position.x > WINDOW_WIDTH - 32:
-		set_position(Vector2(WINDOW_WIDTH - 32, position.y))
-	if position.y < 32:
-		set_position(Vector2(position.x, 32))
-	if position.y > WINDOW_HEIGHT - 32:
-		set_position(Vector2(position.x, WINDOW_HEIGHT - 32))
+	if position.x < 24:
+		set_position(Vector2(24, position.y))
+	if position.x > WINDOW_WIDTH - 24:
+		set_position(Vector2(WINDOW_WIDTH - 24, position.y))
+	if position.y < 24:
+		set_position(Vector2(position.x, 24))
+	if position.y > WINDOW_HEIGHT - 24:
+		set_position(Vector2(position.x, WINDOW_HEIGHT - 24))
 	
 	if controller.is_just_pressed(Controller.Button.ATTACK) && attack_ready:
 		var sword = preload("res://Sword.tscn").instance()
@@ -67,6 +67,7 @@ func on_hit(collider):
 	collider.on_hit(self)
 	lives -= 1
 	print("Lives:", lives)
+	$Hearts.update()
 	if lives <= 0:
 		on_death()
 

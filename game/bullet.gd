@@ -39,8 +39,5 @@ func _give_dir():
 func on_hit(collider):
 	die(collider)
 	
-func die(killer):
-	if killer.is_in_group("Weapon"):
-		if randi()%100<=10:
-			GameWorld.dropHeart(position, get_parent())
+func die(_killer):
 	queue_free()

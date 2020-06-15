@@ -3,8 +3,8 @@ class_name ShootingMob
 
 
 const WINDOW_HEIGHT = 600
-const WINDOW_WIDTH = 1066
-var SPEED = 300
+const WINDOW_WIDTH = 927
+var SPEED = 200
 var pdirection = Vector2() 
 var pposition = Vector2()
 var dir = Vector2()
@@ -26,6 +26,7 @@ func _init():
 func _ready():
 	pposition = get_parent().get_child(0).get_position()
 	add_to_group("Mobs")
+	attack_cooldown.start()
 	
 
 
@@ -35,17 +36,17 @@ func _physics_process(delta):
 		shoot()
 		attack_cooldown.start()
 	
-	if position.x < 0:
-		set_position(Vector2(0, position.y))
+	if position.x < 16:
+		set_position(Vector2(16, position.y))
 		dir = -give_dir()
-	if position.x > WINDOW_WIDTH:
-		set_position(Vector2(WINDOW_WIDTH, position.y))
+	if position.x > WINDOW_WIDTH - 16:
+		set_position(Vector2(WINDOW_WIDTH - 16, position.y))
 		dir = -give_dir()
-	if position.y < 0:
-		set_position(Vector2(position.x, 0))
+	if position.y < 16:
+		set_position(Vector2(position.x, 16))
 		dir = -give_dir()
-	if position.y > WINDOW_HEIGHT:
-		set_position(Vector2(position.x, WINDOW_HEIGHT))
+	if position.y > WINDOW_HEIGHT - 16:
+		set_position(Vector2(position.x, WINDOW_HEIGHT - 16))
 		dir = -give_dir()
 
 	if knockedback == true:
@@ -76,13 +77,14 @@ func give_dir():
 	return vectorholder
 	
 func on_hit(collider):
-	knockedback = true
-
-	reduction = 24
-	if lives > 1:
-		lives -= 1
-	else:
-		die(collider)
+	if !knockedback:
+		knockedback = true
+	
+		reduction = 24
+		if lives > 1:
+			lives -= 1
+		else:
+			die(collider)
 
 
 func give_knockdir():

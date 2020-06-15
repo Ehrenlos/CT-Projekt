@@ -5,21 +5,21 @@ const MAX_MANA = 10
 var progress 
 var prog_timer
 var pposition = Vector2()
-var mobCosts = {STANDARD=2, RANDOM=3}
+var mobCosts = {STANDARD=2, RANDOM=3, SHOOTING=5}
 
 const SPEED = 800
 var motion = Vector2.ZERO
 var controller
 
 const WINDOW_HEIGHT = 600
-const WINDOW_WIDTH = 1066
+const WINDOW_WIDTH = 927
 
-func _init(device = Controller.Device.C0):
+func _init(device = Controller.Device.KEYBOARD):
 	controller = Controller.new(device)
 
 func _ready():
 	add_to_group("GameMaster")
-	progress = get_parent().get_child(1)
+	progress = get_parent().get_node("UI/Progress")
 	prog_timer = Timer.new()
 	prog_timer.connect("timeout", self, "on_prog_timer_timeout")
 	prog_timer.set_wait_time(0.01)
@@ -53,6 +53,11 @@ func _process(delta):
 		if pposition.distance_to(position) > 150:
 			if use_mana(mobCosts.RANDOM):
 				spawn_mob(1)
+	if controller.is_just_pressed(Controller.Button.X):
+		pposition = get_parent().get_child(0).get_position()
+		if pposition.distance_to(position) > 150:
+			if use_mana(mobCosts.SHOOTING):
+				spawn_mob(2)
 
 func apply_movement(acceleration):
 	motion += acceleration
@@ -77,8 +82,8 @@ func on_prog_timer_timeout():
 func spawn_mob(index):
 	var mob
 	match index:
-		0: 
-			mob = preload("res://MobDing.tscn").instance()
+		0: mob = preload("res://MobDing.tscn").instance()
 		1: mob = preload("res://RandomMob.tscn").instance()
+		2: mob = preload("res://ShootingMob.tscn").instance()
 	mob.set_position(position)
 	get_parent().add_child(mob)
