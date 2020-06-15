@@ -109,7 +109,7 @@ func die(killer):
 	queue_free()
 
 func shoot():
-	
+	Sound.get_node("Spawner/Spawn").play(0)
 	var mob
 	mob = preload("res://Mobding.tscn").instance()
 	mob.set_position(Vector2(position.x + 50 , position.y + 50))
