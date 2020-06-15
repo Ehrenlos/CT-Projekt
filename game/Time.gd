@@ -1,6 +1,6 @@
 extends Label
 var timer
-var time = 60
+var time = 10
 
 func _ready():
 	Global.set_time(time)

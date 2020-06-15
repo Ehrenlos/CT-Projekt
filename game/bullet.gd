@@ -29,8 +29,10 @@ func _physics_process(delta):
 	if get_slide_count() > 0:
 		var collision = get_slide_collision(get_slide_count()-1)
 		if collision.collider.is_in_group("Player"):
+			Sound.get_node("Shooting mob/Bullet_Hit").play()
 			collision.collider.on_hit(self)
 		if collision.collider.is_in_group("Weapon"):
+			Sound.get_node("Shooting mob/Block").play()
 			on_hit(collision.collider)
 
 func _give_dir():

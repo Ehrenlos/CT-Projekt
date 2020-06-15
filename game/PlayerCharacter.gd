@@ -50,6 +50,7 @@ func _physics_process(delta):
 		var sword = preload("res://Sword.tscn").instance()
 		sword.add_to_group("Weapon")
 		add_child(sword)
+		$Sound.play(0)
 		attack_ready = false
 		attack_timer.start()
 

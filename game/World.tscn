@@ -16,7 +16,10 @@
 [ext_resource path="res://bg.png" type="Texture" id=14]
 [ext_resource path="res://X-Button.png" type="Texture" id=15]
 [ext_resource path="res://stalfaux.png" type="Texture" id=16]
+
+[ext_resource path="res://sounds/music.wav" type="AudioStream" id=17]
 [ext_resource path="res://mobspawner.tscn" type="PackedScene" id=17]
+
 
 [node name="World" type="Node"]
 script = ExtResource( 8 )
@@ -139,5 +142,8 @@ z_index = -2
 texture = ExtResource( 13 )
 offset = Vector2( -10.3529, -13.44 )
 
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 17 )
+bus = "Music"
 [node name="mobspawner" parent="." instance=ExtResource( 17 )]
 position = Vector2( 103.865, 86.843 )
