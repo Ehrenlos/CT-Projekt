@@ -6,6 +6,10 @@ var motion = Vector2.ZERO
 var controller
 var attack_ready
 var attack_timer
+var cposition
+var knockdir
+var reduction = 6
+var knockedback = false
 var lives = 3
 const WINDOW_HEIGHT = 600
 const WINDOW_WIDTH = 927
@@ -27,6 +31,9 @@ func _ready():
 	attack_ready = true
 
 func _physics_process(delta):
+	
+	if knockedback == true:
+		knockback()
 	motion = Vector2.ZERO
 	apply_movement(controller.get_input_axis(0) * delta)
 	if controller.get_device() == Controller.Device.KEYBOARD:
@@ -65,13 +72,30 @@ func get_position():
 	return Vector2(position.x, position.y)
 
 func on_hit(collider):
-	collider.on_hit(self)
-	lives -= 1
-	print("Lives:", lives)
-	$Hearts.update()
-	if lives <= 0:
-		on_death()
+	if !knockedback:
+		knockedback = true
+		cposition = collider.position
+		collider.on_hit(self)
+		lives -= 1
+		print("Lives:", lives)
+		$Hearts.update()
+		if lives <= 0:
+			on_death()
 
 func on_death():
 	get_tree().change_scene("Game Over.tscn")
 
+
+func give_knockdir():
+	print (position - cposition)
+	return (position - cposition).normalized()
+
+func knockback():
+	knockdir = give_knockdir()
+
+	move_and_slide(knockdir * SPEED * reduction )
+
+	if reduction > 1 :
+		reduction = reduction / 2
+	else:
+		knockedback = false
