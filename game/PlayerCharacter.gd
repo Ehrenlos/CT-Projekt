@@ -6,11 +6,14 @@ var motion = Vector2.ZERO
 var controller
 var attack_ready
 var attack_timer
+var shoot_ready
+var shoot_timer
 var lives = 3
 const WINDOW_HEIGHT = 600
 const WINDOW_WIDTH = 1066
 
-func _init(device = Controller.Device.KEYBOARD):
+
+func _init(device = Global.get_ctrl(Global.Player.P0)):
 	controller = Controller.new(device)
 	if device == Controller.Device.KEYBOARD:
 		Input.set_custom_mouse_cursor(load("res://Cursor.png"))
@@ -24,7 +27,12 @@ func _ready():
 	attack_timer.connect("timeout", self, "on_attack_timer_timeout")
 	attack_timer.set_wait_time(0.25)
 	add_child(attack_timer)
+	shoot_timer = Timer.new()
+	shoot_timer.connect("timeout", self, "on_shoot_timer_timeout")
+	shoot_timer.set_wait_time(2)
+	add_child(shoot_timer)
 	attack_ready = true
+	shoot_ready = true
 
 func _physics_process(delta):
 	motion = Vector2.ZERO
@@ -50,6 +58,18 @@ func _physics_process(delta):
 		add_child(sword)
 		attack_ready = false
 		attack_timer.start()
+<<<<<<< HEAD
+=======
+	
+	if controller.is_just_pressed(Controller.Button.SHOOT) && shoot_ready:
+		print("Shoot")
+		var shot = preload("res://playershot.tscn").instance()
+		shot.add_to_group("Weapon")
+		shot.set_position(get_node("gun").global_position)
+		get_parent().add_child(shot)
+		shoot_ready = false
+		shoot_timer.start()
+>>>>>>> SANS UNDERTALE
 
 func apply_movement(acceleration):
 	motion += acceleration
@@ -57,6 +77,9 @@ func apply_movement(acceleration):
 
 func on_attack_timer_timeout():
 	attack_ready = true
+	
+func on_shoot_timer_timeout():
+	shoot_ready = true
 
 func get_position():
 	return Vector2(position.x, position.y)

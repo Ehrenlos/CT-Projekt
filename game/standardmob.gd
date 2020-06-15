@@ -33,4 +33,13 @@ func _give_dir():
 	return (pposition - position).normalized()
 
 func on_hit(collider):
+
+	if collider.name == "playershot":
+		collider.on_hit(self)
+	die(collider)
+	
+func die(killer):
+	if killer.is_in_group("Weapon"):
+		if randi()%100<=10:
+			GameWorld.dropHeart(position, get_parent())
 	queue_free()
