@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://PlayerCharacter.tscn" type="PackedScene" id=1]
 [ext_resource path="res://GameMaster.tscn" type="PackedScene" id=2]
@@ -17,7 +17,6 @@
 [ext_resource path="res://X-Button.png" type="Texture" id=15]
 [ext_resource path="res://stalfaux.png" type="Texture" id=16]
 [ext_resource path="res://sounds/music.wav" type="AudioStream" id=17]
-[ext_resource path="res://mobspawner.tscn" type="PackedScene" id=18]
 [ext_resource path="res://Y-Button.png" type="Texture" id=19]
 
 [node name="World" type="Node"]
@@ -167,6 +166,3 @@ offset = Vector2( -10.3529, -13.44 )
 [node name="Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 17 )
 bus = "Music"
-
-[node name="mobspawner" parent="." instance=ExtResource( 18 )]
-position = Vector2( 103.865, 86.843 )
