@@ -1,6 +1,6 @@
-extends Label
+extends Node2D
 var timer
-var time = 60
+var time = 5
 
 func _ready():
 	Global.set_time(time)
@@ -12,12 +12,17 @@ func _ready():
 	pass
 
 func _process(delta):
-	text = str(time)
+	$Label.text = str(time)
 
 func on_timer_timeout():
 	Global.set_time(time)
 	if time <= 0:
-		get_tree().change_scene("Switch Sides.tscn")
+		Global.inc_speed()
+		var gm_ctrl = Global.get_ctrl(Global.Player.GM)
+		var p0_ctrl = Global.get_ctrl(Global.Player.P0)
+		Global.set_ctrl(Global.Player.GM, p0_ctrl)
+		Global.set_ctrl(Global.Player.P0, gm_ctrl)
+		get_tree().change_scene("World.tscn")
 	else:
 		time -= 1
 		timer.start()

@@ -10,7 +10,7 @@ var lives = 3
 const WINDOW_HEIGHT = 600
 const WINDOW_WIDTH = 927
 
-func _init(device = Controller.Device.C0):
+func _init(device = Global.get_ctrl(Global.Player.P0)):
 	controller = Controller.new(device)
 	if device == Controller.Device.KEYBOARD:
 		Input.set_custom_mouse_cursor(load("res://Cursor.png"))
