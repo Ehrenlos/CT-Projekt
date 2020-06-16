@@ -34,12 +34,7 @@ z_index = 4
 script = ExtResource( 3 )
 
 [node name="UI" type="Node2D" parent="."]
-
-[node name="bg" type="Sprite" parent="UI"]
-position = Vector2( 464.681, 302 )
-scale = Vector2( 1, 1.00667 )
-z_index = -8
-texture = ExtResource( 14 )
+z_index = 24
 
 [node name="Time" type="Label" parent="UI"]
 margin_left = 952.0
@@ -162,6 +157,12 @@ scale = Vector2( 5.08441, 19.8401 )
 z_index = -2
 texture = ExtResource( 13 )
 offset = Vector2( -10.3529, -13.44 )
+
+[node name="bg" type="Sprite" parent="."]
+position = Vector2( 464.681, 302 )
+scale = Vector2( 1, 1.00667 )
+z_index = -8
+texture = ExtResource( 14 )
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 17 )

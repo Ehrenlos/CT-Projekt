@@ -32,6 +32,9 @@ func _ready():
 
 func _physics_process(delta):
 	
+	look_at(get_parent().get_node("Player").position)
+	$Sprite.rotation = -rotation
+	
 	if attack_cooldown.is_stopped():
 		shoot()
 		attack_cooldown.start()
@@ -77,6 +80,8 @@ func give_dir():
 	return vectorholder
 	
 func on_hit(collider):
+	if collider.name == "playershot":
+		collider.on_hit(self)
 	if !knockedback:
 		knockedback = true
 	
@@ -110,10 +115,9 @@ func die(killer):
 	queue_free()
 
 func shoot():
-	
 	var bullet
 	bullet = preload("res://bullet.tscn").instance()
-	bullet.set_position(position)
+	bullet.set_position($Gun.global_position)
 	get_parent().add_child(bullet)
 	Sound.get_node("Shooting mob/Shoot").play()
 	print("shoot")
