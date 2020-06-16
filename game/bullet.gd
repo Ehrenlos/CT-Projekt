@@ -39,6 +39,8 @@ func _give_dir():
 	return (pposition - position).normalized()
 
 func on_hit(collider):
+	if collider.name == "playershot":
+		collider.die(self)
 	die(collider)
 	
 func die(_killer):

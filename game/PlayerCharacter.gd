@@ -6,6 +6,8 @@ var motion = Vector2.ZERO
 var controller
 var attack_ready
 var attack_timer
+var shoot_ready
+var shoot_timer
 var cposition
 var knockdir
 var reduction = 6
@@ -28,7 +30,12 @@ func _ready():
 	attack_timer.connect("timeout", self, "on_attack_timer_timeout")
 	attack_timer.set_wait_time(0.25)
 	add_child(attack_timer)
+	shoot_timer = Timer.new()
+	shoot_timer.connect("timeout", self, "on_shoot_timer_timeout")
+	shoot_timer.set_wait_time(2)
+	add_child(shoot_timer)
 	attack_ready = true
+	shoot_ready = true
 
 func _physics_process(delta):
 	
@@ -60,6 +67,16 @@ func _physics_process(delta):
 		$Sound.play(0)
 		attack_ready = false
 		attack_timer.start()
+	
+	if controller.is_just_pressed(Controller.Button.SHOOT) && shoot_ready:
+		print("Shoot")
+		var shot = preload("res://playershot.tscn").instance()
+		shot.add_to_group("Weapon")
+		shot.set_position(get_node("gun").global_position)
+		$gun/Sound.play(0)
+		get_parent().add_child(shot)
+		shoot_ready = false
+		shoot_timer.start()
 
 func apply_movement(acceleration):
 	motion += acceleration
@@ -67,6 +84,9 @@ func apply_movement(acceleration):
 
 func on_attack_timer_timeout():
 	attack_ready = true
+	
+func on_shoot_timer_timeout():
+	shoot_ready = true
 
 func get_position():
 	return Vector2(position.x, position.y)

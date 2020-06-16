@@ -76,6 +76,8 @@ func give_dir():
 	return vectorholder
 	
 func on_hit(collider):
+	if collider.name == "playershot":
+		collider.on_hit(self)
 	if !knockedback && collider.is_in_group("Weapon"):
 		
 		knockedback = true
