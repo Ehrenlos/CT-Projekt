@@ -5,7 +5,7 @@ const MAX_MANA = 10
 var progress 
 var prog_timer
 var pposition = Vector2()
-var mobCosts = {STANDARD=2, RANDOM=3, SHOOTING=5}
+var mobCosts = {STANDARD=2, RANDOM=3, SHOOTING=5, SPAWNER=7}
 
 const SPEED = 800
 var motion = Vector2.ZERO
@@ -45,19 +45,24 @@ func _process(delta):
 	
 	if controller.is_just_pressed(Controller.Button.A):
 		pposition = get_parent().get_child(0).get_position()
-		if pposition.distance_to(position) > 150:
+		if pposition.distance_to(position) > 200:
 			if use_mana(mobCosts.STANDARD):
 				spawn_mob(0)
 	if controller.is_just_pressed(Controller.Button.B):
 		pposition = get_parent().get_child(0).get_position()
-		if pposition.distance_to(position) > 150:
+		if pposition.distance_to(position) > 200:
 			if use_mana(mobCosts.RANDOM):
 				spawn_mob(1)
 	if controller.is_just_pressed(Controller.Button.X):
 		pposition = get_parent().get_child(0).get_position()
-		if pposition.distance_to(position) > 150:
+		if pposition.distance_to(position) > 200:
 			if use_mana(mobCosts.SHOOTING):
 				spawn_mob(2)
+	if controller.is_just_pressed(Controller.Button.Y):
+		pposition = get_parent().get_child(0).get_position()
+		if pposition.distance_to(position) > 200:
+			if use_mana(mobCosts.SPAWNER):
+				spawn_mob(3)
 
 func apply_movement(acceleration):
 	motion += acceleration
@@ -85,5 +90,7 @@ func spawn_mob(index):
 		0: mob = preload("res://MobDing.tscn").instance()
 		1: mob = preload("res://RandomMob.tscn").instance()
 		2: mob = preload("res://ShootingMob.tscn").instance()
+		3: mob = preload("res://mobspawner.tscn").instance()
 	mob.set_position(position)
 	get_parent().add_child(mob)
+	$Spawn.play(0)

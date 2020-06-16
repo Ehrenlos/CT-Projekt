@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Switch Sides.gd" type="Script" id=1]
 [ext_resource path="res://sounds/Switch Sides.wav" type="AudioStream" id=2]
 [ext_resource path="res://bg.png" type="Texture" id=3]
+[ext_resource path="res://Side switch.png" type="Texture" id=4]
+[ext_resource path="res://press_any_button.png" type="Texture" id=5]
 
 [node name="Switch Sides" type="Node2D"]
 script = ExtResource( 1 )
@@ -13,6 +15,18 @@ volume_db = 20.0
 bus = "Music"
 
 [node name="bg" type="Sprite" parent="."]
-position = Vector2( 546.029, 310.379 )
+position = Vector2( 536, 312 )
 scale = Vector2( 1.21053, 1.21053 )
 texture = ExtResource( 3 )
+
+[node name="Side switch" type="Sprite" parent="."]
+position = Vector2( 512, 88 )
+scale = Vector2( 1.30806, 1.30806 )
+z_index = 2
+texture = ExtResource( 4 )
+
+[node name="press_any_button" type="Sprite" parent="."]
+visible = false
+position = Vector2( 512, 528 )
+scale = Vector2( 0.590001, 0.590001 )
+texture = ExtResource( 5 )
