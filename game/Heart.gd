@@ -12,5 +12,6 @@ func _physics_process(delta):
 			if b.is_in_group("Player"):
 				b.lives += 1
 				queue_free()
+				b.get_node("Hearts").update()
 	if Global.time <= spawn_time - 5:
 		queue_free()

@@ -16,7 +16,6 @@ func _ready():
 	var p0_ctrl = Global.get_ctrl(Global.Player.P0)
 	Global.set_ctrl(Global.Player.GM, p0_ctrl)
 	Global.set_ctrl(Global.Player.P0, gm_ctrl)
-	pass
 
 func _input(event):
 	if time_off:

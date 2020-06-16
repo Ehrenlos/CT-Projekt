@@ -5,7 +5,7 @@ const MAX_MANA = 10
 var progress 
 var prog_timer
 var pposition = Vector2()
-var mobCosts = {STANDARD=2, RANDOM=3, SHOOTING=5, SPAWNER=7}
+var mobCosts = {STANDARD=2, RANDOM=4, SHOOTING=6, SPAWNER=8}
 
 const SPEED = 800
 var motion = Vector2.ZERO
